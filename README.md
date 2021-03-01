@@ -39,7 +39,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
   Board $> apt-get install <package>
 
 ## List of updates packages in the layer meta-st-pkgrepo-updates
-Depends on the selected branch when cloning the repository.
+- samba 4.8.18-r1: fix missing directories /var/log/samba and /run/samba at package installation
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 Depends on the selected branch when cloning the repository.
