@@ -1,0 +1,16 @@
+From 38907a4a1e624329b38707a39f63ac75de447b2c Mon Sep 17 00:00:00 2001
+From: Jean-Marc BOUCHE <jean-marc.bouche@st.com>
+Date: Thu, 11 Jun 2020 17:01:27 +0200
+Subject: [PATCH] Socket dir is no longer /var/run/samba but /run/samba
+
+---
+ packaging/systemd/samba.conf.tmp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/packaging/systemd/samba.conf.tmp b/packaging/systemd/samba.conf.tmp
+index 8a29577..3250c63 100644
+--- a/packaging/systemd/samba.conf.tmp
++++ b/packaging/systemd/samba.conf.tmp
+@@ -1 +1 @@
+-d /var/run/samba  755 root root
++d /run/samba  755 root root
