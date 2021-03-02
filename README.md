@@ -42,7 +42,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 - samba 4.8.18-r1: fix missing directories /var/log/samba and /run/samba at package installation
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
-Depends on the selected branch when cloning the repository.
+- openvpn-install 1.0-r0: new package to ease OpenVPN server installation
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>
