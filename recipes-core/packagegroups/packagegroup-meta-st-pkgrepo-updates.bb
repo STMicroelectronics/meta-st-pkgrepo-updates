@@ -14,5 +14,6 @@ RDEPENDS_${PN} = " \
         node-red-dashboard \
         openvpn-install \
         python3-pyqt5 \
+        qt-wpe-simple-browser \
         samba \
                  "
