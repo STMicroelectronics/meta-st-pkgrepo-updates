@@ -43,6 +43,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: new package to ease OpenVPN server installation
+- python3-pyqt5 5.13.2-r1: add support for QtWebKit
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>

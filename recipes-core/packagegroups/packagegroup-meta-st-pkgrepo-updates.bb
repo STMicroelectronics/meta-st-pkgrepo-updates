@@ -10,5 +10,6 @@ inherit packagegroup
 
 RDEPENDS_${PN} = " \
         openvpn-install \
+        python3-pyqt5 \
         samba \
                  "
