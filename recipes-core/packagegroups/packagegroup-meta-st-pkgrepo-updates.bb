@@ -9,6 +9,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ad
 inherit packagegroup
 
 RDEPENDS_${PN} = " \
+        cups cups-filters \
         node-red \
         node-red-contrib-image-tools \
         node-red-dashboard \
