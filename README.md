@@ -65,6 +65,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 
 ## List of updated packages in the layer meta-st-pkgrepo-updates
 - samba 4.8.18-r1: fix missing directories /var/log/samba and /run/samba at package installation
+- python3-pyqt5 5.13.2-r1: add support for QtWebKit
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation
