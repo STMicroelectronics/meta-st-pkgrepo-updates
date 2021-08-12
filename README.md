@@ -74,6 +74,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 - node-red-dasboard 2.23.4-r0: add support for Node-RED usage
 - node-red-contrib-image-tools 1.4.0-r0: add support for Node-RED usage
 - qt-wpe-simple-browser 0.1-r0: offer Qt-based browser
+- libpqxx 6.4.7-r0: provide C++ PostgreSQL connector
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>
