@@ -67,6 +67,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 - samba 4.8.18-r1: fix missing directories /var/log/samba and /run/samba at package installation
 - python3-pyqt5 5.13.2-r1: add support for QtWebKit
 - cups 2.3.1-r1 and cups-filters 1.27.2-r0: fix apt installation problem
+- hplip 3.19.12-r1: fix systemd pre and post-installation from template service file
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation
