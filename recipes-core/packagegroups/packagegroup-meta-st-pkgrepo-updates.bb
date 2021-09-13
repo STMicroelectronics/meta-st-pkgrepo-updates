@@ -10,6 +10,7 @@ inherit packagegroup
 
 RDEPENDS_${PN} = " \
         cups cups-filters \
+        hplip \
         libpqxx \
         node-red \
         node-red-contrib-image-tools \
