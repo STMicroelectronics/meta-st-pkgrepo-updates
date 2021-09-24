@@ -15,6 +15,7 @@ RDEPENDS_${PN} = " \
         node-red \
         node-red-contrib-image-tools \
         node-red-dashboard \
+        node-red-node-sqlite \
         openvpn-install \
         python3-pyqt5 \
         qt-wpe-simple-browser \
