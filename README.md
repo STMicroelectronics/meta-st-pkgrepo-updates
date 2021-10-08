@@ -20,8 +20,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 1/ Install the STM32MP1 Distribution Package but do not initialize the OpenEmbedded environment (i.e. do not source the envsetup.sh script).
 2/ Clone the meta-st-pkgrepo-updates repository:
   PC $> cd <Distribution Package installation directory>/layers/meta-st
-  PC $> git clone https://github.com/STMicroelectronics/meta-st-pkgrepo-updates.git -b <branch>
-where <branch> corresponds to the STM32MP1 Distribution Package version.
+  PC $> git clone https://github.com/STMicroelectronics/meta-st-pkgrepo-updates.git -b openstlinux-ecosystem-v3.0.0
 3/ Setup the environment:
   PC $> cd ../..
   PC $> DISTRO=openstlinux-weston MACHINE=stm32mp1 BSP_DEPENDENCY='layers/meta-st/meta-st-pkgrepo-updates' source layers/meta-st/scripts/envsetup.sh
