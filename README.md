@@ -72,15 +72,17 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 
 ## List of updated packages in the layer meta-st-pkgrepo-updates
 - samba 4.8.18-r1: fix missing directories /var/log/samba and /run/samba at package installation
+- python3-pyqt5 5.13.2-r1: add support for QtWebKit
 - cups 2.3.1-r1: fix apt installation problem
-- hplip 3.19.12-r1 : fix systemd pre and post-installation from template service file
+- hplip 3.19.12-r1: fix systemd pre and post-installation from template service file
+- mtd-utils 2.1.3-r0: upgrade version
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation
-- python3-pyqt5 5.13.2-r1: add support for QtWebKit
 - node-red 1.0.2-r1: add support for Node-RED programming
 - node-red-dasboard 2.23.4-r1: add support for Node-RED usage
 - node-red-contrib-image-tools 1.4.0-r1: add support for Node-RED usage
+- node-red-node-sqlite 1.0.1-r0: add support for Node-RED SQLite node
 - qt-wpe-simple-browser 0.1-r1: offer Qt-based browser
 - libpqxx 6.4.7-r0: provide C++ PostgreSQL connector
 
