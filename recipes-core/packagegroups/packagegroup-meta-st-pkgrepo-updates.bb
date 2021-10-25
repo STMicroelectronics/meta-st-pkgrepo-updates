@@ -12,6 +12,7 @@ RDEPENDS_${PN} = " \
         cups cups-filters \
         hplip \
         libpqxx \
+        mtd-utils \
         node-red \
         node-red-contrib-image-tools \
         node-red-dashboard \
@@ -21,4 +22,3 @@ RDEPENDS_${PN} = " \
         qt-wpe-simple-browser \
         samba \
                  "
-
