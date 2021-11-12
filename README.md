@@ -65,7 +65,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
   Board $> apt-get install <package>
   ```
 
-## List of updates packages in the layer meta-st-pkgrepo-updates
+## List of updated packages in the layer meta-st-pkgrepo-updates
 Depends on the selected branch when cloning the repository.
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
