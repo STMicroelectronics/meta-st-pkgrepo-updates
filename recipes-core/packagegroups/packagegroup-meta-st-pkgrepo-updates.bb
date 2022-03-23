@@ -11,6 +11,7 @@ inherit packagegroup
 RDEPENDS_${PN} = " \
         cups cups-filters \
         hplip \
+        htop \
         libpqxx \
         mtd-utils \
         node-red \

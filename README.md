@@ -69,6 +69,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 - cups 2.3.1-r1 and cups-filters 1.27.2-r0: fix apt installation problem
 - hplip 3.19.12-r1: fix systemd pre and post-installation from template service file
 - mtd-utils 2.1.3-r0: upgrade version
+- htop 3.1.2: upgrade version
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation
