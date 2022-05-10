@@ -1,0 +1,234 @@
+From a9860d9fc2a259139b31f4c6b85730ad38a91c1b Mon Sep 17 00:00:00 2001
+From: Jean-Marc BOUCHE <jean-marc.bouche@st.com>
+Date: Tue, 10 May 2022 09:44:25 +0200
+Subject: [PATCH 1/1] Patch OpenVPN installer for OpenSTLinux
+
+---
+ openvpn-install.sh | 83 ++++++++++++++++++++++++++++++----------------
+ 1 file changed, 54 insertions(+), 29 deletions(-)
+
+diff --git a/openvpn-install.sh b/openvpn-install.sh
+index 64d8ed0..d7f3f62 100755
+--- a/openvpn-install.sh
++++ b/openvpn-install.sh
+@@ -1,9 +1,11 @@
+ #!/bin/bash
+ # shellcheck disable=SC1091,SC2164,SC2034,SC1072,SC1073,SC1009
+ 
+-# Secure OpenVPN server installer for Debian, Ubuntu, CentOS, Amazon Linux 2, Fedora, Oracle Linux 8, Arch Linux, Rocky Linux and AlmaLinux.
++# Secure OpenVPN server installer for Debian, Ubuntu, CentOS, Amazon Linux 2, Fedora, Oracle Linux 8, Arch Linux, Rocky Linux, AlmaLinux and OpenSTLinux.
+ # https://github.com/angristan/openvpn-install
+ 
++VERSION_EASYRSA="3.0.7"
++
+ function isRoot() {
+ 	if [ "$EUID" -ne 0 ]; then
+ 		return 1
+@@ -87,7 +89,14 @@ function checkOS() {
+ 	elif [[ -e /etc/arch-release ]]; then
+ 		OS=arch
+ 	else
+-		echo "Looks like you aren't running this installer on a Debian, Ubuntu, Fedora, CentOS, Amazon Linux 2, Oracle Linux 8 or Arch Linux system"
++	        if [[ -e /etc/version ]]; then
++		        source /etc/os-release
++		        if [[ $ID == "openstlinux-weston" ]]; then
++			        OS="openstlinux"
++                                return
++                        fi
++		fi
++		echo "Looks like you aren't running this installer on a Debian, Ubuntu, Fedora, CentOS, Amazon Linux 2, Oracle Linux 8, Arch Linux or OpenSTLinux system"
+ 		exit 1
+ 	fi
+ }
+@@ -108,7 +117,7 @@ function installUnbound() {
+ 	# If Unbound isn't installed, install it
+ 	if [[ ! -e /etc/unbound/unbound.conf ]]; then
+ 
+-		if [[ $OS =~ (debian|ubuntu) ]]; then
++		if [[ $OS =~ (debian|ubuntu|openstlinux) ]]; then
+ 			apt-get install -y unbound
+ 
+ 			# Configuration
+@@ -686,6 +695,10 @@ function installOpenVPN() {
+ 		elif [[ $OS == 'arch' ]]; then
+ 			# Install required dependencies and upgrade the system
+ 			pacman --needed --noconfirm -Syu openvpn iptables openssl wget ca-certificates curl
++		elif [[ $OS == 'openstlinux' ]]; then
++			apt-get install -y openvpn wget ca-certificates curl openssl-bin iptables
++			mkdir /etc/openvpn
++                        mkdir /run/openvpn
+ 		fi
+ 		# An old version of easy-rsa was available by default in some openvpn packages
+ 		if [[ -d /etc/openvpn/easy-rsa/ ]]; then
+@@ -702,13 +715,12 @@ function installOpenVPN() {
+ 
+ 	# Install the latest version of easy-rsa from source, if not already installed.
+ 	if [[ ! -d /etc/openvpn/easy-rsa/ ]]; then
+-		local version="3.0.7"
+-		wget -O ~/easy-rsa.tgz https://github.com/OpenVPN/easy-rsa/releases/download/v${version}/EasyRSA-${version}.tgz
+-		mkdir -p /etc/openvpn/easy-rsa
+-		tar xzf ~/easy-rsa.tgz --strip-components=1 --directory /etc/openvpn/easy-rsa
++		wget --no-check-certificate -O ~/easy-rsa.tgz https://github.com/OpenVPN/easy-rsa/releases/download/v$VERSION_EASYRSA/EasyRSA-$VERSION_EASYRSA.tgz
++		mkdir /etc/openvpn/easy-rsa
++		tar xzf ~/easy-rsa.tgz  -C /etc/openvpn/easy-rsa
+ 		rm -f ~/easy-rsa.tgz
+ 
+-		cd /etc/openvpn/easy-rsa/ || return
++		cd /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA || return
+ 		case $CERT_TYPE in
+ 		1)
+ 			echo "set_var EASYRSA_ALGO ec" >vars
+@@ -752,12 +764,12 @@ function installOpenVPN() {
+ 	else
+ 		# If easy-rsa is already installed, grab the generated SERVER_NAME
+ 		# for client configs
+-		cd /etc/openvpn/easy-rsa/ || return
++		cd /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/ || return
+ 		SERVER_NAME=$(cat SERVER_NAME_GENERATED)
+ 	fi
+ 
+ 	# Move all the generated files
+-	cp pki/ca.crt pki/private/ca.key "pki/issued/$SERVER_NAME.crt" "pki/private/$SERVER_NAME.key" /etc/openvpn/easy-rsa/pki/crl.pem /etc/openvpn
++	cp pki/ca.crt pki/private/ca.key "pki/issued/$SERVER_NAME.crt" "pki/private/$SERVER_NAME.key" /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/pki/crl.pem /etc/openvpn
+ 	if [[ $DH_TYPE == "2" ]]; then
+ 		cp dh.pem /etc/openvpn
+ 	fi
+@@ -1074,13 +1086,13 @@ function newClient() {
+ 		read -rp "Select an option [1-2]: " -e -i 1 PASS
+ 	done
+ 
+-	CLIENTEXISTS=$(tail -n +2 /etc/openvpn/easy-rsa/pki/index.txt | grep -c -E "/CN=$CLIENT\$")
++	CLIENTEXISTS=$(tail -n +2 /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/pki/index.txt | grep -c -E "/CN=$CLIENT\$")
+ 	if [[ $CLIENTEXISTS == '1' ]]; then
+ 		echo ""
+ 		echo "The specified client CN was already found in easy-rsa, please choose another name."
+ 		exit
+ 	else
+-		cd /etc/openvpn/easy-rsa/ || return
++		cd /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA || return
+ 		case $PASS in
+ 		1)
+ 			./easyrsa build-client-full "$CLIENT" nopass
+@@ -1101,13 +1113,21 @@ function newClient() {
+ 		# if not, use SUDO_USER
+ 		if [ "${SUDO_USER}" == "root" ]; then
+ 			# If running sudo as root
+-			homeDir="/root"
++                        if [[ $OS == 'openstlinux' ]]; then
++                            homeDir="/home/root"
++                        else
++		            homeDir="/root"
++                        fi
+ 		else
+ 			homeDir="/home/${SUDO_USER}"
+ 		fi
+ 	else
+ 		# if not SUDO_USER, use /root
+-		homeDir="/root"
++                if [[ $OS == 'openstlinux' ]]; then
++                        homeDir="/home/root"
++                else
++		        homeDir="/root"
++                fi
+ 	fi
+ 
+ 	# Determine if we use tls-auth or tls-crypt
+@@ -1121,15 +1141,15 @@ function newClient() {
+ 	cp /etc/openvpn/client-template.txt "$homeDir/$CLIENT.ovpn"
+ 	{
+ 		echo "<ca>"
+-		cat "/etc/openvpn/easy-rsa/pki/ca.crt"
++		cat "/etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/pki/ca.crt"
+ 		echo "</ca>"
+ 
+ 		echo "<cert>"
+-		awk '/BEGIN/,/END/' "/etc/openvpn/easy-rsa/pki/issued/$CLIENT.crt"
++		awk '/BEGIN/,/END/' "/etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/pki/issued/$CLIENT.crt"
+ 		echo "</cert>"
+ 
+ 		echo "<key>"
+-		cat "/etc/openvpn/easy-rsa/pki/private/$CLIENT.key"
++		cat "/etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/pki/private/$CLIENT.key"
+ 		echo "</key>"
+ 
+ 		case $TLS_SIG in
+@@ -1155,7 +1175,7 @@ function newClient() {
+ }
+ 
+ function revokeClient() {
+-	NUMBEROFCLIENTS=$(tail -n +2 /etc/openvpn/easy-rsa/pki/index.txt | grep -c "^V")
++	NUMBEROFCLIENTS=$(tail -n +2 /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/pki/index.txt | grep -c "^V")
+ 	if [[ $NUMBEROFCLIENTS == '0' ]]; then
+ 		echo ""
+ 		echo "You have no existing clients!"
+@@ -1164,7 +1184,7 @@ function revokeClient() {
+ 
+ 	echo ""
+ 	echo "Select the existing client certificate you want to revoke"
+-	tail -n +2 /etc/openvpn/easy-rsa/pki/index.txt | grep "^V" | cut -d '=' -f 2 | nl -s ') '
++	tail -n +2 /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/pki/index.txt | grep "^V" | cut -d '=' -f 2 | nl -s ') '
+ 	until [[ $CLIENTNUMBER -ge 1 && $CLIENTNUMBER -le $NUMBEROFCLIENTS ]]; do
+ 		if [[ $CLIENTNUMBER == '1' ]]; then
+ 			read -rp "Select one client [1]: " CLIENTNUMBER
+@@ -1172,17 +1192,21 @@ function revokeClient() {
+ 			read -rp "Select one client [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
+ 		fi
+ 	done
+-	CLIENT=$(tail -n +2 /etc/openvpn/easy-rsa/pki/index.txt | grep "^V" | cut -d '=' -f 2 | sed -n "$CLIENTNUMBER"p)
+-	cd /etc/openvpn/easy-rsa/ || return
++	CLIENT=$(tail -n +2 /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/pki/index.txt | grep "^V" | cut -d '=' -f 2 | sed -n "$CLIENTNUMBER"p)
++	cd /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/ || return
+ 	./easyrsa --batch revoke "$CLIENT"
+ 	EASYRSA_CRL_DAYS=3650 ./easyrsa gen-crl
+ 	rm -f /etc/openvpn/crl.pem
+-	cp /etc/openvpn/easy-rsa/pki/crl.pem /etc/openvpn/crl.pem
++	cp /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/pki/crl.pem /etc/openvpn/crl.pem
+ 	chmod 644 /etc/openvpn/crl.pem
+-	find /home/ -maxdepth 2 -name "$CLIENT.ovpn" -delete
+-	rm -f "/root/$CLIENT.ovpn"
++	find /home/ -maxdepth 2 -name "$CLIENT.ovpn" -exec rm -f {} \;
++        if [[ $OS == 'openstlinux' ]]; then
++                rm -f "/home/root/$CLIENT.ovpn"
++        else
++	        rm -f "/root/$CLIENT.ovpn"
++        fi
+ 	sed -i "/^$CLIENT,.*/d" /etc/openvpn/ipp.txt
+-	cp /etc/openvpn/easy-rsa/pki/index.txt{,.bk}
++	cp /etc/openvpn/easy-rsa/EasyRSA-$VERSION_EASYRSA/pki/index.txt{,.bk}
+ 
+ 	echo ""
+ 	echo "Certificate for client $CLIENT revoked."
+@@ -1203,7 +1227,7 @@ function removeUnbound() {
+ 		# Stop Unbound
+ 		systemctl stop unbound
+ 
+-		if [[ $OS =~ (debian|ubuntu) ]]; then
++		if [[ $OS =~ (debian|ubuntu|openstlinux) ]]; then
+ 			apt-get remove --purge -y unbound
+ 		elif [[ $OS == 'arch' ]]; then
+ 			pacman --noconfirm -R unbound
+@@ -1266,7 +1290,7 @@ function removeOpenVPN() {
+ 			fi
+ 		fi
+ 
+-		if [[ $OS =~ (debian|ubuntu) ]]; then
++		if [[ $OS =~ (debian|ubuntu|openstlinux) ]]; then
+ 			apt-get remove --purge -y openvpn
+ 			if [[ -e /etc/apt/sources.list.d/openvpn.list ]]; then
+ 				rm /etc/apt/sources.list.d/openvpn.list
+@@ -1281,9 +1305,10 @@ function removeOpenVPN() {
+ 		fi
+ 
+ 		# Cleanup
+-		find /home/ -maxdepth 2 -name "*.ovpn" -delete
+-		find /root/ -maxdepth 1 -name "*.ovpn" -delete
++		find /home/ -maxdepth 2 -name "*.ovpn" -exec rm -f {} \;
++		find /root/ -maxdepth 1 -name "*.ovpn" -exec rm -f {} \;
+ 		rm -rf /etc/openvpn
++                rm -rf /run/openvpn
+ 		rm -rf /usr/share/doc/openvpn*
+ 		rm -f /etc/sysctl.d/99-openvpn.conf
+ 		rm -rf /var/log/openvpn
+-- 
+2.25.1
+
