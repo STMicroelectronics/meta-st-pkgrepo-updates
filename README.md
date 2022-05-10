@@ -70,7 +70,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - openvpn 2.5.6-r1: fix missing directory /run/openvpn at package installation
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
-Depends on the selected branch when cloning the repository.
+- openvpn-install 1.0-r0: ease OpenVPN server installation
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>

@@ -10,5 +10,6 @@ inherit packagegroup
 
 RDEPENDS:${PN} = " \
     openvpn \
+    openvpn-install \
     samba \
    "
