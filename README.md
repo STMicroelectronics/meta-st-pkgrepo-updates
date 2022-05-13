@@ -68,6 +68,8 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 - hplip 3.19.12-r1: fix systemd pre and post-installation from template service file
 - mtd-utils 2.1.3-r0: upgrade version
 - adwaita-icon-them 41.0-r1: fix package pre and post-installation steps
+- python3-pyqt5 5.13.2-r1: add support for QtWebKit
+- qtbase 5.15.3+git0+c95f96550f-r1: fix compatibility problem between Qt 5.15.3 and OpenSSL 3.0.x
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation
