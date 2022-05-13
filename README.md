@@ -71,6 +71,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - hplip 3.19.12-r1: fix systemd pre and post-installation from template service file
 - adwaita-icon-theme 41.0-r1: fix package pre and post-installation steps
 - qtbase 5.15.3+git0+c95f96550f-r1: fix compatibility problem between Qt 5.15.3 and OpenSSL 3.0.5
+- python3-pyqt5 5.15.1-r1: add support for QtWebKit
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation

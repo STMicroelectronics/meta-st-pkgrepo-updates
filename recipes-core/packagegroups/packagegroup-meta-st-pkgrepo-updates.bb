@@ -14,6 +14,7 @@ RDEPENDS:${PN} = " \
     libpqxx \
     openvpn \
     openvpn-install \
+    python3-pyqt5 \
     qtbase \
     samba \
    "
