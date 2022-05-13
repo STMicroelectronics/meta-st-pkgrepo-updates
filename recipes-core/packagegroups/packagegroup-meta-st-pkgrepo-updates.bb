@@ -13,6 +13,10 @@ RDEPENDS:${PN} = " \
     hplip \
     libpqxx \
     openvpn \
+    node-red \
+    node-red-contrib-image-tools \
+    node-red-dashboard \
+    node-red-node-sqlite \
     openvpn-install \
     python3-pip \
     python3-pyqt5 \
