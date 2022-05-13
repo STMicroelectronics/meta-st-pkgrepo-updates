@@ -74,6 +74,10 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation
 - libpqxx 7.7.3-r0: provide C++ PostgreSQL connector
+- node-red 2.2.2-r0: add support for Node-RED programming
+- node-red-dasboard 3.1.7-r0: add a set of dashboard nodes for Node-RED
+- node-red-contrib-image-tools 2.0.4-r0: add a dynamic image editor, image viewer, 1D/2D Barcode Generator and 1D/2D Barcode Decoder nodes for Node-RED
+- node-red-node-sqlite 1.0.3-r0: add a sqlite node for Node-RED
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>
