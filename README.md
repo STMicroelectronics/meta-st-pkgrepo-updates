@@ -69,6 +69,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation
+- libpqxx 7.7.3-r0: provide C++ PostgreSQL connector
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>

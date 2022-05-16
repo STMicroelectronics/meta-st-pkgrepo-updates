@@ -10,6 +10,7 @@ inherit packagegroup
 
 RDEPENDS:${PN} = " \
     hplip \
+    libpqxx \
     openvpn-install \
     samba \
    "
