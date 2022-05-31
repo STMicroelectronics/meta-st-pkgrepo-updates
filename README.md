@@ -69,6 +69,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - samba 4.14.14-r1: fix missing directories /var/log/samba and /run/samba at package installation
 - openvpn 2.5.6-r1: fix missing directory /run/openvpn at package installation
 - hplip 3.19.12-r1: fix systemd pre and post-installation from template service file
+- adwaita-icon-theme 41.0-r1: fix package pre and post-installation steps
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation
