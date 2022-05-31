@@ -67,6 +67,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 - samba 4.14.13-r1: fix missing directories /var/log/samba and /run/samba at package installation
 - hplip 3.19.12-r1: fix systemd pre and post-installation from template service file
 - mtd-utils 2.1.3-r0: upgrade version
+- adwaita-icon-them 41.0-r1: fix package pre and post-installation steps
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation
