@@ -24,10 +24,8 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 
   ```
   PC $> cd <Distribution Package installation directory>/layers/meta-st
-  PC $> git clone https://github.com/STMicroelectronics/meta-st-pkgrepo-updates.git -b <branch>
+  PC $> git clone https://github.com/STMicroelectronics/meta-st-pkgrepo-updates.git -b openstlinux-ecosystem-v4.0.0
   ```
-
-where <branch> corresponds to the STM32MP1 Distribution Package version.
 
 3. Setup the environment:
 
