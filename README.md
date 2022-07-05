@@ -70,6 +70,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 - adwaita-icon-them 41.0-r1: fix package pre and post-installation steps
 - python3-pyqt5 5.13.2-r1: add support for QtWebKit
 - qtbase 5.15.3+git0+c95f96550f-r1: fix compatibility problem between Qt 5.15.3 and OpenSSL 3.0.x
+- python3-pip 22.0.3-r1: add missing dependencies
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - openvpn-install 1.0-r0: ease OpenVPN server installation
