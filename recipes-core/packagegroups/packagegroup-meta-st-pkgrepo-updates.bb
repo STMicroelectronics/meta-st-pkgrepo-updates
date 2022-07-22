@@ -18,4 +18,5 @@ RDEPENDS:${PN} = " \
     python3-pyqt5 \
     qtbase \
     samba \
+    tio \
    "
