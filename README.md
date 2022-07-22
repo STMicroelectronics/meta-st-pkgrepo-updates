@@ -79,6 +79,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 - node-red-dasboard 3.1.7-r0: add a set of dashboard nodes for Node-RED
 - node-red-contrib-image-tools 2.0.4-r0: add a dynamic image editor, image viewer, 1D/2D Barcode Generator and 1D/2D Barcode Decoder nodes for Node-RED
 - node-red-node-sqlite 1.0.3-r0: add a sqlite node for Node-RED
+- tio 1.46-r0: provide simple serial device I/O tool
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>
