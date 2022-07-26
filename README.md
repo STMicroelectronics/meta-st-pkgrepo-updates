@@ -66,7 +66,7 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 ## List of updated packages in the layer meta-st-pkgrepo-updates
 - samba 4.14.13-r1: fix missing directories /var/log/samba and /run/samba at package installation
 - hplip 3.19.12-r2: 1/ fix systemd pre and post-installation from template service file, 2/ patch to support migration to Python 3.10
-- mtd-utils 2.1.3-r0: upgrade version
+- mtd-utils 2.1.4-r0: restore yocto version
 - adwaita-icon-them 41.0-r1: fix package pre and post-installation steps
 - python3-pyqt5 5.13.2-r1: add support for QtWebKit
 - qtbase 5.15.3+git0+c95f96550f-r1: fix compatibility problem between Qt 5.15.3 and OpenSSL 3.0.x
