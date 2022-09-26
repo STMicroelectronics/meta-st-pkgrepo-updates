@@ -1,4 +1,4 @@
-# Copyright (C) 2021, STMicroelectronics - All Rights Reserved
+# Copyright (C) 2022, STMicroelectronics - All Rights Reserved
 # Released under the MIT license (see COPYING.MIT for the terms)
 
 SUMMMARY = "Package Group from the updates Component"
