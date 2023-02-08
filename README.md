@@ -82,6 +82,13 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - node-red-dasboard 3.2.0-r0: add a set of dashboard nodes for Node-RED
 - node-red-contrib-image-tools 2.0.4-r0: add a dynamic image editor, image viewer, 1D/2D Barcode Generator and 1D/2D Barcode Decoder nodes for Node-RED
 - node-red-node-sqlite 1.0.3-r0: add a sqlite node for Node-RED
+- python3-azure-core_1.26.2-r0: provide Azure core shared client library
+- python3-azure-identity_1.12.0-r0: Azure identity library
+- python3-azure-servicebus_7.8.2-r0: Azure service bus client library
+- python3-azure-storage-blob_12.14.1-r1: Azure storage blobs client library
+- python3-msal_1.21.0-r0: Microsoft authentication library
+- python3-msrest_0.7.1-r0: AutoRest swagger generator client runtime
+- python3-uamqp_1.6.3-r0: AMQP 1.0 client library
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>

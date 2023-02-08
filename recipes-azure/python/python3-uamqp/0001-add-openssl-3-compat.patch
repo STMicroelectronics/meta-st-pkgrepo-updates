@@ -1,0 +1,126 @@
+From fd7f3b087e7d1899d1e12d5d1382a2e68b197e87 Mon Sep 17 00:00:00 2001
+From: Vincent ABRIOU <vincent.abriou@st.com>
+Date: Tue, 31 Jan 2023 16:27:00 +0100
+Subject: [PATCH 1/1] add openssl 3 compat
+
+Signed-off-by: Vincent ABRIOU <vincent.abriou@st.com>
+---
+ .../deps/azure-c-shared-utility/CMakeLists.txt       | 12 ++++++++++++
+ .../azure-c-shared-utility/adapters/tlsio_openssl.c  |  4 ++--
+ .../azure-c-shared-utility/adapters/x509_openssl.c   |  4 ++--
+ .../tests/x509_openssl_ut/CMakeLists.txt             |  9 +++++++++
+ .../tests/x509_openssl_ut/x509_openssl_ut.c          |  4 ++--
+ 5 files changed, 27 insertions(+), 6 deletions(-)
+
+diff --git a/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/CMakeLists.txt b/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/CMakeLists.txt
+index 5101951..87bff19 100644
+--- a/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/CMakeLists.txt
++++ b/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/CMakeLists.txt
+@@ -448,6 +448,18 @@ endif()
+ FILE(GLOB aziotsharedutil_md_files "devdoc/*.md")
+ SOURCE_GROUP(devdoc FILES ${aziotsharedutil_md_files})
+ 
++# Add ignore deprecated functions so we may use 1.1.1 APIs
++# in OpenSSL 3
++if(LINUX)
++  set_property(
++    SOURCE
++      ${CMAKE_CURRENT_LIST_DIR}/adapters/tlsio_openssl.c
++      ${CMAKE_CURRENT_LIST_DIR}/adapters/x509_openssl.c
++    PROPERTY COMPILE_OPTIONS
++      -Wno-deprecated-declarations
++  )
++endif()
++
+ #this is the product (a library)
+ add_library(aziotsharedutil ${source_c_files} ${source_h_files} ${aziotsharedutil_md_files})
+ setTargetBuildProperties(aziotsharedutil)
+diff --git a/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/adapters/tlsio_openssl.c b/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/adapters/tlsio_openssl.c
+index 4a3df84..1832994 100644
+--- a/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/adapters/tlsio_openssl.c
++++ b/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/adapters/tlsio_openssl.c
+@@ -953,7 +953,7 @@ static int add_certificate_to_store(TLS_IO_INSTANCE* tls_io_instance, const char
+         }
+         else
+         {
+-#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) && (OPENSSL_VERSION_NUMBER < 0x20000000L)
++#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) || defined(LIBRESSL_VERSION_NUMBER)
+             const BIO_METHOD* bio_method;
+ #else
+             BIO_METHOD* bio_method;
+@@ -1238,7 +1238,7 @@ void tlsio_openssl_deinit(void)
+ {
+     openssl_dynamic_locks_uninstall();
+     openssl_static_locks_uninstall();
+-#if  (OPENSSL_VERSION_NUMBER >= 0x00907000L) &&  (OPENSSL_VERSION_NUMBER < 0x20000000L) && (FIPS_mode_set)
++#if  (OPENSSL_VERSION_NUMBER >= 0x00907000L) && (FIPS_mode_set)
+     FIPS_mode_set(0);
+ #endif
+     CRYPTO_set_locking_callback(NULL);
+diff --git a/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/adapters/x509_openssl.c b/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/adapters/x509_openssl.c
+index 5a9e5ac..cf47058 100644
+--- a/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/adapters/x509_openssl.c
++++ b/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/adapters/x509_openssl.c
+@@ -75,7 +75,7 @@ static int load_certificate_chain(SSL_CTX* ssl_ctx, const char* certificate)
+                 // certificates.
+ 
+                 /* Codes_SRS_X509_OPENSSL_07_006: [ If successful x509_openssl_add_ecc_credentials shall to import each certificate in the cert chain. ] */
+-#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) && (OPENSSL_VERSION_NUMBER < 0x20000000L)
++#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) || defined(LIBRESSL_VERSION_NUMBER)
+                 SSL_CTX_clear_extra_chain_certs(ssl_ctx);
+ #else
+                 if (ssl_ctx->extra_certs != NULL)
+@@ -345,7 +345,7 @@ int x509_openssl_add_certificates(SSL_CTX* ssl_ctx, const char* certificates)
+         else
+         {
+             /*Codes_SRS_X509_OPENSSL_02_012: [ x509_openssl_add_certificates shall get the memory BIO method function by calling BIO_s_mem. ]*/
+-#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) && (OPENSSL_VERSION_NUMBER < 0x20000000L)
++#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) || defined(LIBRESSL_VERSION_NUMBER)
+             const BIO_METHOD* bio_method;
+ #else
+             BIO_METHOD* bio_method;
+diff --git a/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/tests/x509_openssl_ut/CMakeLists.txt b/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/tests/x509_openssl_ut/CMakeLists.txt
+index 342fe4c..e2e8428 100644
+--- a/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/tests/x509_openssl_ut/CMakeLists.txt
++++ b/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/tests/x509_openssl_ut/CMakeLists.txt
+@@ -9,6 +9,15 @@ set(${theseTestsName}_test_files
+ ${theseTestsName}.c
+ )
+ 
++if(LINUX)
++  set_property(
++    SOURCE
++      ../../adapters/x509_openssl.c
++    PROPERTY COMPILE_OPTIONS
++      -Wno-deprecated-declarations
++  )
++endif()
++
+ set(${theseTestsName}_c_files
+ ../../adapters/x509_openssl.c
+ )
+diff --git a/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/tests/x509_openssl_ut/x509_openssl_ut.c b/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/tests/x509_openssl_ut/x509_openssl_ut.c
+index b3349f6..0ecb7e8 100644
+--- a/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/tests/x509_openssl_ut/x509_openssl_ut.c
++++ b/src/vendor/azure-uamqp-c/deps/azure-c-shared-utility/tests/x509_openssl_ut/x509_openssl_ut.c
+@@ -348,7 +348,7 @@ BEGIN_TEST_SUITE(x509_openssl_unittests)
+         STRICT_EXPECTED_CALL(BIO_new_mem_buf((void*)TEST_PUBLIC_CERTIFICATE, -1));
+         STRICT_EXPECTED_CALL(PEM_read_bio_X509_AUX(IGNORED_PTR_ARG, NULL, NULL, NULL));
+         STRICT_EXPECTED_CALL(SSL_CTX_use_certificate(IGNORED_PTR_ARG, IGNORED_PTR_ARG));
+-#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) && (OPENSSL_VERSION_NUMBER < 0x20000000L)
++#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) || defined(LIBRESSL_VERSION_NUMBER)
+         // Actual macro name: SSL_CTX_clear_extra_chain_certs:
+         STRICT_EXPECTED_CALL(SSL_CTX_ctrl(TEST_SSL_CTX_STRUCTURE, SSL_CTRL_CLEAR_EXTRA_CHAIN_CERTS, 0, NULL));
+ #endif
+@@ -537,7 +537,7 @@ BEGIN_TEST_SUITE(x509_openssl_unittests)
+ 
+         umock_c_negative_tests_snapshot();
+ 
+-#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) && (OPENSSL_VERSION_NUMBER < 0x20000000L)
++#if (OPENSSL_VERSION_NUMBER >= 0x10100000L) || defined(LIBRESSL_VERSION_NUMBER)
+     #ifdef __APPLE__
+         size_t calls_cannot_fail_rsa[] = { 4, 5, 6, 10, 12, 13, 14 };
+         size_t calls_cannot_fail_ecc[] = { 3, 4, 8, 10, 11, 12} ;
+-- 
+2.25.1
+

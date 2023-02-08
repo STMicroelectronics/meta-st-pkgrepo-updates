@@ -20,6 +20,9 @@ RDEPENDS:${PN} = " \
     openvpn-install \
     python3-pip \
     python3-pyqt5 \
+    python3-azure-identity \
+    python3-azure-servicebus \
+    python3-azure-storage-blob \
     qtbase \
     samba \
     tio \
