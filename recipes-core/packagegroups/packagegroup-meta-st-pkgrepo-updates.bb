@@ -23,6 +23,7 @@ RDEPENDS:${PN} = " \
     python3-azure-identity \
     python3-azure-servicebus \
     python3-azure-storage-blob \
+    python3-ixnetwork-restpy \
     qtbase \
     samba \
     tio \

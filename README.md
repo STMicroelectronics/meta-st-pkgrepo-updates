@@ -89,6 +89,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-msal_1.21.0-r0: Microsoft authentication library
 - python3-msrest_0.7.1-r0: AutoRest swagger generator client runtime
 - python3-uamqp_1.6.3-r0: AMQP 1.0 client library
+- python3-ixnetwork-restpy_1.1.8-r0: IxNetwork REST API client
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>
