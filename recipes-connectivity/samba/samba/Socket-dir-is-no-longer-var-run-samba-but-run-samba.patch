@@ -1,0 +1,7 @@
+Index: samba-4.18.1/packaging/systemd/samba.conf.tmp
+===================================================================
+--- samba-4.18.1.orig/packaging/systemd/samba.conf.tmp
++++ samba-4.18.1/packaging/systemd/samba.conf.tmp
+@@ -1 +1 @@
+-d /var/run/samba  755 root root
++d /run/samba  755 root root
