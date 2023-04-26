@@ -72,6 +72,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - libpqxx 7.9.0-r0: provide C++ PostgreSQL connector
 - openvpn-install 1.0-r0: ease OpenVPN server installation
+- python3-ixnetwork-restpy 1.3.0-r0: IxNetwork REST API client
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>

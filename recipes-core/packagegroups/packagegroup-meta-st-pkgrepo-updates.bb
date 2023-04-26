@@ -12,5 +12,6 @@ RDEPENDS:${PN} = " \
     hplip \
     libpqxx \
     openvpn-install \
+    python3-ixnetwork-restpy \
     samba \
 "
