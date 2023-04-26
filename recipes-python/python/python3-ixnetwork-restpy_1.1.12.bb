@@ -8,7 +8,7 @@ AUTHOR = "Keysight ISG IxNetwork team"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fcee478b8b4b2e8603a64208ad930ae1"
 
-SRC_URI[sha256sum] = "76745d38e73529c4e8daf5b28dac645d73314ddaf0add87981e5b1ee1a61fd41"
+SRC_URI[sha256sum] = "c213892a9eadc57fc232bddea805816aeb91f5df535c38e09a17bc6f8be6e74f"
 
 PYPI_PACKAGE = "ixnetwork_restpy"
 
