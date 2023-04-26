@@ -1,0 +1,61 @@
+Index: hplip-3.22.10/base/g.py
+===================================================================
+--- hplip-3.22.10.orig/base/g.py
++++ hplip-3.22.10/base/g.py
+@@ -128,7 +128,7 @@ class ConfigBase(object):
+             try:
+                 fp = open(self.filename, "r")
+                 try:
+-                    self.conf.readfp(fp)
++                    self.conf.read_file(fp)
+                 except configparser.MissingSectionHeaderError:
+                     print("")
+                     log.error("Found No Section in %s. Please set the http proxy for root and try again." % self.filename)
+Index: hplip-3.22.10/ui4/devmgr5.py
+===================================================================
+--- hplip-3.22.10.orig/ui4/devmgr5.py
++++ hplip-3.22.10/ui4/devmgr5.py
+@@ -1023,9 +1023,8 @@ class DevMgr5(QMainWindow,  Ui_MainWindo
+                     return
+ 
+                 hplip_conf = configparser.ConfigParser()
+-                fp = open("/etc/hp/hplip.conf", "r")
+-                hplip_conf.readfp(fp)
+-                fp.close()
++                with open("/etc/hp/hplip.conf", "r") as fp:
++                    hplip_conf.read_file(fp)
+ 
+                 try:
+                     plugin_installed = utils.to_bool(hplip_conf.get("hplip", "plugin"))
+Index: hplip-3.22.10/ui5/devmgr5.py
+===================================================================
+--- hplip-3.22.10.orig/ui5/devmgr5.py
++++ hplip-3.22.10/ui5/devmgr5.py
+@@ -1073,9 +1073,8 @@ class DevMgr5(Ui_MainWindow_Derived, Ui_
+                     return
+ 
+                 hplip_conf = configparser.ConfigParser()
+-                fp = open("/etc/hp/hplip.conf", "r")
+-                hplip_conf.readfp(fp)
+-                fp.close()
++                with open("/etc/hp/hplip.conf", "r") as fp:
++                    hplip_conf.read_file(fp)
+ 
+                 try:
+                     plugin_installed = utils.to_bool(hplip_conf.get("hplip", "plugin"))
+Index: hplip-3.22.10/ui/devmgr4.py
+===================================================================
+--- hplip-3.22.10.orig/ui/devmgr4.py
++++ hplip-3.22.10/ui/devmgr4.py
+@@ -1226,9 +1226,8 @@ class DevMgr4(DevMgr4_base):
+             opt_plugin = d.plugin == PLUGIN_OPTIONAL
+ 
+             hplip_conf = ConfigParser.ConfigParser()
+-            fp = open("/etc/hp/hplip.conf", "r")
+-            hplip_conf.readfp(fp)
+-            fp.close()
++            with open("/etc/hp/hplip.conf", "r") as fp:
++                hplip_conf.read_file(fp)
+ 
+             try:
+                 plugin_installed = utils.to_bool(hplip_conf.get("hplip", "plugin"))
