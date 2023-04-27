@@ -13,5 +13,11 @@ RDEPENDS:${PN} = " \
     libpqxx \
     openvpn-install \
     python3-ixnetwork-restpy \
+    python3-azure-identity \
+    python3-azure-servicebus \
+    python3-azure-storage-blob \
+    python3-msrest \
+    python3-amqp \
+    python3-ixnetwork-restpy \
     samba \
 "
