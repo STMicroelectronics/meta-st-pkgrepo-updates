@@ -71,6 +71,10 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - libpqxx 7.7.5-r0: provide C++ PostgreSQL connector
+- node-red 3.0.2-r0: add support for Node-RED programming
+- node-red-dasboard 3.4.0-r0: add a set of dashboard nodes for Node-RED
+- node-red-contrib-image-tools 2.0.4-r0: add a dynamic image editor, image viewer, 1D/2D Barcode Generator and 1D/2D Barcode Decoder nodes for Node-RED
+- node-red-node-sqlite 1.0.3-r0: add a sqlite node for Node-RED
 - openvpn-install 1.0-r0: ease OpenVPN server installation
 - python3-azure-core 1.26.4-r0: provide Azure core shared client library
 - python3-azure-identity 1.12.0-r0: Azure identity library
