@@ -72,7 +72,17 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - libpqxx 7.9.0-r0: provide C++ PostgreSQL connector
 - openvpn-install 1.0-r0: ease OpenVPN server installation
+- python3-amqp 5.2.0-r0: AMQP Client library
+- python3-azure-core 1.30.1-r0: provide Azure core shared client library
+- python3-azure-identity 1.16.0-r0: Azure identity library
+- python3-azure-servicebus 7.12.2-r0: Azure service bus client library
+- python3-azure-storage-blob 12.20.0-r0: Azure storage blobs client library
 - python3-ixnetwork-restpy 1.3.0-r0: IxNetwork REST API client
+- python3-msal 1.28.0-r0: Microsoft authentication library
+- python3-msal-extensions 1.1.0-r0: Microsoft authentication library extensions
+- python3-msrest 0.7.1-r0: AutoRest swagger generator client runtime
+- python3-pyjwt 2.8.0-r0: JSON Web Token implementation in Python
+- python3-vine 5.1.0-r0: Python Promises
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>
