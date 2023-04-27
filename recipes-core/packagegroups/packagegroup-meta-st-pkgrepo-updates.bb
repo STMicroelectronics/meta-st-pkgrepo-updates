@@ -12,6 +12,9 @@ RDEPENDS:${PN} = " \
     hplip \
     libpqxx \
     openvpn-install \
+    ${PYTHON_PN}-azure-identity \
+    ${PYTHON_PN}-azure-servicebus \
+    ${PYTHON_PN}-azure-storage-blob \
     ${PYTHON_PN}-ixnetwork-restpy \
     qtbase \
     samba \
