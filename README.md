@@ -67,6 +67,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 
 ## List of updated packages in the layer meta-st-pkgrepo-updates
 - hplip 3.22.10-r1: fix systemd pre and post-installation from template service file and add missing dependency to python3-dbus
+- qtbase 5.15.9+git0+42e4ae042a-r1: fix compatibility problem between Qt 5.15.9 and OpenSSL 3.1.0
 - samba 4.17.5-r1: fix missing directories /var/log/samba and /run/samba at package installation
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
