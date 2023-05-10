@@ -20,6 +20,7 @@ RDEPENDS:${PN} = " \
     ${PYTHON_PN}-azure-servicebus \
     ${PYTHON_PN}-azure-storage-blob \
     ${PYTHON_PN}-ixnetwork-restpy \
+    ${PYTHON_PN}-pyqt5 \
     qtbase \
     samba \
 "
