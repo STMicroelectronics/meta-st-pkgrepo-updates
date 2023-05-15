@@ -29,20 +29,28 @@ The OpenEmbedded meta layer meta-st-pkgrepo-updates should be added on top of th
 
 where <branch> corresponds to the STM32MP1 Distribution Package version.
 
-3. Setup the environment:
+3. Clone the meta-jupyter repository:
+
+  ```
+  PC $> cd <Distribution Package installation directory>/layers
+  PC $> git clone https://github.com/Xilinx/meta-jupyter.git -b langdale
+  PC $> sed -i 's/langdale/langdale mickledore/' meta-jupyter/conf/layer.conf
+  ```
+
+4. Setup the environment:
 
   ```
   PC $> cd ../..
-  PC $> DISTRO=openstlinux-weston MACHINE=stm32mp1 BSP_DEPENDENCY='layers/meta-st/meta-st-pkgrepo-updates' source layers/meta-st/scripts/envsetup.sh
+  PC $> DISTRO=openstlinux-weston MACHINE=stm32mp1 BSP_DEPENDENCY='layers/meta-st/meta-st-pkgrepo-updates layers/meta-jupyter' source layers/meta-st/scripts/envsetup.sh
   ```
 
-4. Build the package group:
+5. Build the package group:
 
   ```
   PC $> bitbake packagegroup-meta-st-pkgrepo-updates
   ```
 
-5. Activate the local package repository to be accessed from your board on your host PC:
+6. Activate the local package repository to be accessed from your board on your host PC:
 
   ```
   PC $> bitbake package-index
@@ -50,7 +58,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
   PC $> python -m SimpleHTTPServer &
   ```
 
-6. Set the local package repository from your board (\<IP\> is the host PC IP):
+7. Set the local package repository from your board (\<IP\> is the host PC IP):
 
   ```
   Board $> echo "deb [trusted=yes] http://<IP>:8000/stm32mp1 /" > /etc/apt/sources.list.d/pkgrepo-updates.list
@@ -84,6 +92,10 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-pyjwt 2.8.0-r0: JSON Web Token implementation in Python
 - python3-uamqp 1.6.9-r0: AMQP 1.0 client library
 - python3-vine 5.1.0-r0: Python Promises
+- jupyter-lab-service 1.0-r0: provide Jupyter lab service
+- python3-jupyter-c-kernel 1.2.2-r0: minimal C kernel for Jupyter
+- python3-jupyterthemes 0.20.0-r0: themes for Jupyter notebooks
+- python3-lesscpy 0.15.1-r0: provide Python LESS compiler
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>
