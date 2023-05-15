@@ -21,3 +21,5 @@ RDEPENDS:${PN} = " \
     python3-ixnetwork-restpy \
     samba \
 "
+
+RDEPENDS:${PN}:append:aarch64 = " packagegroup-st-jupyter"
