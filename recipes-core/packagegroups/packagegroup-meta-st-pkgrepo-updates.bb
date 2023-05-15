@@ -10,6 +10,7 @@ inherit packagegroup
 
 RDEPENDS:${PN} = " \
     hplip \
+    packagegroup-st-jupyter \
     libpqxx \
     openvpn-install \
     python3-ixnetwork-restpy \
