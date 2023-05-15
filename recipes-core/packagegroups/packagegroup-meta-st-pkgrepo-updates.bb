@@ -10,6 +10,7 @@ inherit packagegroup python3-dir
 
 RDEPENDS:${PN} = " \
     hplip \
+    packagegroup-st-jupyter \
     libpqxx \
     node-red \
     node-red-contrib-image-tools \
