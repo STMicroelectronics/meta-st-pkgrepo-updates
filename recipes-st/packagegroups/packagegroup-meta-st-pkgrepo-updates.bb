@@ -8,4 +8,6 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ad
 
 inherit packagegroup
 
-RDEPENDS:${PN} = ""
+RDEPENDS:${PN} = " \
+    samba \
+"
