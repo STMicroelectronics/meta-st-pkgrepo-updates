@@ -66,7 +66,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
   ```
 
 ## List of updated packages in the layer meta-st-pkgrepo-updates
-Depends on the selected branch when cloning the repository.
+- samba 4.19.9-r1: fix missing directories /var/log/samba and /run/samba at package installation
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
 Depends on the selected branch when cloning the repository.
