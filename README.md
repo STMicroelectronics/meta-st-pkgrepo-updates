@@ -70,6 +70,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - samba 4.18.1-r1: fix missing directories /var/log/samba and /run/samba at package installation
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
+- libpqxx 7.9.0-r0: provide C++ PostgreSQL connector
 - openvpn-install 1.0-r0: ease OpenVPN server installation
 
 ## Maintainers

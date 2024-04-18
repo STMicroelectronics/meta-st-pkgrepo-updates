@@ -10,6 +10,7 @@ inherit packagegroup python3-dir
 
 RDEPENDS:${PN} = " \
     hplip \
+    libpqxx \
     openvpn-install \
     samba \
 "
