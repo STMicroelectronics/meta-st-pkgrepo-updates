@@ -25,6 +25,8 @@ RDEPENDS:${PN} += " \
     ${PYTHON_PN}-jupyter-c-kernel \
     ${PYTHON_PN}-jupyterthemes \
     graphviz \
+    evcxr-jupyter \
+    evcxr \
 "
 
 SRC_URI = " \
