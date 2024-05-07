@@ -22,4 +22,5 @@ RDEPENDS:${PN} = " \
     samba \
 "
 
-RDEPENDS:${PN}:append:aarch64 = " packagegroup-st-jupyter"
+# Check if the machine is not based on aarch32 architecture for stm32mp2 machines
+RDEPENDS:${PN}:append:stm32mp2common = "${@bb.utils.contains('TUNE_FEATURES', 'aarch32', '', 'packagegroup-st-jupyter', d)}"
