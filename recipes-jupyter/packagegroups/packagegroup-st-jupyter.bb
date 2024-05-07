@@ -11,4 +11,9 @@ RDEPENDS:${PN} = "  \
 	\
 	python3-jupyter-c-kernel \
 	python3-jupyterthemes \
+	\
+	cargo \
+	rust \
+	rust-llvm \
+	rust-llvm-liblto \
 "
