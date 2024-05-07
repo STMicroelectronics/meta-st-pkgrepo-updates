@@ -27,6 +27,9 @@ RDEPENDS:${PN} += " \
     graphviz \
 "
 
+# Add Rust support for aarch64
+RDEPENDS:${PN}:append:aarch64 = " evcxr-jupyter evcxr"
+
 SRC_URI = " \
     file://jupyterlab-session.service \
     file://st-jupyter-service.sh \
