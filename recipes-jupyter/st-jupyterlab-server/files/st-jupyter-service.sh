@@ -1,12 +1,18 @@
 #!/bin/sh -
 
 jupyter_kernel_depends() {
+        # C kernel
 	local version_major
 	version_major=$(python3 --version | awk '{print $NF}')
 	version_major=${version_major%.*}
 	if [ -f /usr/lib/python"${version_major}"/site-packages/jupyter_c_kernel/install_c_kernel ];
 	then
 		install_c_kernel --user
+	fi
+	# Rust kernel
+	if [ -f /usr/bin/evcxr_jupyter ];
+	then
+	        evcxr_jupyter --install
 	fi
 }
 

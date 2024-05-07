@@ -22,4 +22,5 @@ RDEPENDS:${PN} = " \
     samba \
 "
 
-RDEPENDS:${PN}:append:aarch64 = " packagegroup-st-jupyter"
+# Add Jupyter packages for stm32mp2 machines
+RDEPENDS:${PN}:append:stm32mp2common = "packagegroup-st-jupyter"

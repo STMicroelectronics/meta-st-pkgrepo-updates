@@ -3,7 +3,7 @@
 ## Introduction
 The layer meta-st-pkgrepo-updates is used to populate the component 'updates' of the Package Repository Service of OpenSTLinux.
 
-OpenSTLinux is a Linux® distribution based on the OpenEmbedded build framework.
+OpenSTLinux is a Linuxï¿½ distribution based on the OpenEmbedded build framework.
 
 ## DISTRO
 meta-st-pkgrepo-updates does not provide any distro.
@@ -77,6 +77,9 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - samba 4.23.11-r1: fix missing directories /var/log/samba and /run/samba at package installation
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
+- evcxr 0.21.1-r0: provide an evaluation context for Rust
+- evcxr-jupyter 0.21.1-r0: provide a Jupyter kernel for Rust
+- evcxr-sysroot 1.94.1-r0: provide a private sysroot for Evcxr with matching Rust 1.94.1 libraries and sources
 - libpqxx 7.10.7-r0: provide C++ PostgreSQL connector
 - openvpn-install 1.0-r0: ease OpenVPN server installation
 - python3-amqp 5.3.1-r0: AMQP Client library
@@ -96,7 +99,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-jupyterthemes 0.20.0-r0: themes for Jupyter notebooks
 - python3-lesscpy 0.15.2-r0: provide Python LESS compiler
 
-> **Note:** Jupyter notebooks are only provided for STM32MP2 products running aarch64 architecture.
+> **Note:** Jupyter notebooks are only provided for STM32MP2 products excluding aarch32 architecture and Rust support is only available with aarch64 architecture.
 
 
 ## Maintainers

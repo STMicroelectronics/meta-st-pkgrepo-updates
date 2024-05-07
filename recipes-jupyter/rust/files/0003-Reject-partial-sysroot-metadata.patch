@@ -1,0 +1,29 @@
+Subject: [PATCH] Reject partial sysroot metadata
+
+During cross compilation, partial sysroot metadata may be present.
+This patch ensures that any partial metadata results in an error.
+
+This patch was generated with the assistance of AI.
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Jean-Marc BOUCHE <jean-marc.bouche@foss.st.com>
+
+Index: ra_ap_project_model-0.0.295/src/sysroot.rs
+===================================================================
+--- ra_ap_project_model-0.0.295.orig/src/sysroot.rs	2006-07-24 03:21:28.000000000 +0200
++++ ra_ap_project_model-0.0.295/src/sysroot.rs	2026-10-30 13:30:53.533451609 +0100
+@@ -337,9 +337,12 @@
+ 
+         // Make sure we never attempt to write to the sysroot
+         let locked = true;
+-        let (mut res, _) =
++        let (mut res, metadata_error) =
+             FetchMetadata::new(library_manifest, current_dir, &cargo_config, self, no_deps)
+                 .exec(target_dir, locked, progress)?;
++        if let Some(error) = metadata_error {
++            return Err(error);
++        }
+ 
+         // Patch out `rustc-std-workspace-*` crates to point to the real crates.
+         // This is done prior to `CrateGraph` construction to prevent de-duplication logic from failing.

@@ -1,0 +1,5 @@
+#!/bin/sh
+# Reuse the system compiler with Evcxr's matching libraries and sources.
+# The override also directs --print sysroot/target-libdir queries to the
+# private sysroot, keeping compiler and analyzer discovery consistent.
+exec @BINDIR@/rustc --sysroot @SYSROOT@ "$@"

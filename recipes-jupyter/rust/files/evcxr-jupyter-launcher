@@ -1,0 +1,13 @@
+#!/bin/sh
+# Select the private compiler wrapper for Evcxr, Cargo, and rust-analyzer
+# without changing the toolchain used outside this kernel process tree.
+export EVCXR_RUSTC="@SYSROOT@/bin/rustc"
+export RUSTC="$EVCXR_RUSTC"
+export EVCXR_CARGO="@BINDIR@/cargo"
+export CARGO="$EVCXR_CARGO"
+# Register this launcher, not the underlying binary, in the Jupyter kernelspec
+# so every new Rust kernel receives the same private toolchain environment.
+export EVCXR_KERNEL_EXECUTABLE="@BINDIR@/evcxr_jupyter"
+# Cover subprocesses that invoke rustc through PATH rather than RUSTC.
+export PATH="@SYSROOT@/bin:$PATH"
+exec @LIBEXECDIR@/evcxr/evcxr_jupyter "$@"

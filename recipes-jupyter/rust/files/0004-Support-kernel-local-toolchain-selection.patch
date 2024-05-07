@@ -1,0 +1,40 @@
+Subject: [PATCH] Support kernel-local toolchain selection
+
+Allow the packaged kernel launcher to select a private compiler sysroot
+without changing the system compiler or depending on Rustup discovery.
+Keep the launcher in the registered kernelspec so its environment also
+applies when Jupyter starts a new kernel process.
+
+This patch was generated with the assistance of AI.
+
+Upstream-Status: Inappropriate [distribution toolchain integration]
+
+Signed-off-by: Jean-Marc BOUCHE <jean-marc.bouche@foss.st.com>
+
+diff --git a/evcxr/src/eval_context.rs b/evcxr/src/eval_context.rs
+--- a/evcxr/src/eval_context.rs
++++ b/evcxr/src/eval_context.rs
+@@ -2050,6 +2050,10 @@
+ /// correctly. This mostly happens when people set PATH in their bashrc, then run evcxr_jupyter from
+ /// vscode.
+ fn default_tool_path(tool: &str, fallback: &str) -> Result<PathBuf> {
++    let variable = format!("EVCXR_{}", tool.to_ascii_uppercase());
++    if let Some(path) = std::env::var_os(variable) {
++        return Ok(PathBuf::from(path));
++    }
+     if let Some(path) = rustup_tool_path(None, tool) {
+         return Ok(path);
+     }
+diff --git a/evcxr_jupyter/src/install.rs b/evcxr_jupyter/src/install.rs
+--- a/evcxr_jupyter/src/install.rs
++++ b/evcxr_jupyter/src/install.rs
+@@ -28,6 +28,8 @@
+     fs::create_dir_all(&kernel_dir)?;
+-    let current_exe_path = env::current_exe()?;
++    let current_exe_path = env::var_os("EVCXR_KERNEL_EXECUTABLE")
++        .map(PathBuf::from)
++        .unwrap_or(env::current_exe()?);
+     let current_exe = current_exe_path
+         .to_str()
+         .ok_or_else(|| anyhow!("current exe path isn't valid UTF-8"))?;
+     let kernel_json = object! {
