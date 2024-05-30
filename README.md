@@ -50,7 +50,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
   PC $> python -m SimpleHTTPServer &
   ```
 
-6. Set the local package repository from your board (<IP> is the host PC IP):
+6. Set the local package repository from your board (\<IP\> is the host PC IP):
 
   ```
   Board $> echo "deb [trusted=yes] http://<IP>:8000/stm32mp1 /" > /etc/apt/sources.list.d/pkgrepo-updates.list
