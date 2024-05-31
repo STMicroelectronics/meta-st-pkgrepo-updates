@@ -11,6 +11,10 @@ inherit packagegroup
 RDEPENDS:${PN} = " \
     hplip \
     libpqxx \
+    node-red \
+    node-red-contrib-image-tools \
+    node-red-dashboard \
+    node-red-node-sqlite \
     openvpn-install \
     python3-ixnetwork-restpy \
     python3-azure-identity \

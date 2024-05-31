@@ -81,6 +81,10 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - evcxr 0.17.0-r0: provide an evaluation context for Rust
 - evcxr-jupyter 0.17.0-r0: provide a Jupyter kernel for Rust
 - libpqxx 7.10.0-r0: provide C++ PostgreSQL connector
+- node-red 4.0.6-r0: add support for Node-RED programming
+- node-red-dasboard 3.6.5-r0: add a set of dashboard nodes for Node-RED
+- node-red-contrib-image-tools 2.1.1-r0: add a dynamic image editor, image viewer, 1D/2D Barcode Generator and 1D/2D Barcode Decoder nodes for Node-RED
+- node-red-node-sqlite 1.1.0-r0: add a sqlite node for Node-RED
 - openvpn-install 1.0-r0: ease OpenVPN server installation
 - python3-amqp 5.3.1-r0: AMQP Client library
 - python3-azure-core 1.32.0-r0: provide Azure core shared client library
