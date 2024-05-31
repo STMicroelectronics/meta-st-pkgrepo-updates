@@ -82,6 +82,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-msal-extensions 1.1.0-r0: Microsoft authentication library extensions
 - python3-msrest 0.7.1-r0: AutoRest swagger generator client runtime
 - python3-pyjwt 2.8.0-r0: JSON Web Token implementation in Python
+- python3-uamqp 1.6.9-r0: AMQP 1.0 client library
 - python3-vine 5.1.0-r0: Python Promises
 
 ## Maintainers

@@ -18,6 +18,7 @@ RDEPENDS:${PN} = " \
     python3-azure-storage-blob \
     python3-msrest \
     python3-amqp \
+    python3-uamqp \
     python3-ixnetwork-restpy \
     samba \
 "
