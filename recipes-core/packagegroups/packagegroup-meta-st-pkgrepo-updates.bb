@@ -9,6 +9,8 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ad
 inherit packagegroup python3-dir
 
 RDEPENDS:${PN} = " \
+    apt-openstlinux-x-linux-aws \
+    apt-openstlinux-x-linux-qt \
     hplip \
     packagegroup-st-jupyter \
     libpqxx \
@@ -26,4 +28,5 @@ RDEPENDS:${PN} = " \
     python3-uamqp \
     python3-ixnetwork-restpy \
     samba \
+    x-linux-ai-tool \
 "

@@ -1,0 +1,2 @@
+DPkg::Pre-Invoke {"echo 'https://wiki.st.com/stm32mpu/wiki/X-LINUX-QT_licenses' ; echo ; ";};
+APT::Update::Pre-Invoke {"echo 'https://wiki.st.com/stm32mpu/wiki/X-LINUX-Qt_licenses' ; echo ;";};
