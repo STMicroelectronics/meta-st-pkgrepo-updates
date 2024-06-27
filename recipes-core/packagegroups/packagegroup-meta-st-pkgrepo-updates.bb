@@ -1,4 +1,4 @@
-# Copyright (C) 2021, STMicroelectronics - All Rights Reserved
+# Copyright (C) 2024, STMicroelectronics - All Rights Reserved
 # Released under the MIT license (see COPYING.MIT for the terms)
 
 SUMMMARY = "Package Group from the updates Component"
@@ -8,4 +8,4 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ad
 
 inherit packagegroup
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
