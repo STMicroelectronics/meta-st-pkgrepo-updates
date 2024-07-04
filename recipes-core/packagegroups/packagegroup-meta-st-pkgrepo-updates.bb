@@ -10,6 +10,7 @@ inherit packagegroup python3-dir
 
 RDEPENDS:${PN} = " \
     apt-openstlinux-x-linux-aws \
+    apt-openstlinux-x-linux-azure \
     apt-openstlinux-x-linux-qt \
     hplip \
     packagegroup-st-jupyter \

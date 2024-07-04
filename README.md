@@ -80,6 +80,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 ## List of added packages in the layer meta-st-pkgrepo-updates
 - apt-openstlinux-x-linux-ai 5.1.0-r0: apt configuration for x-linux-ai packages
 - apt-openstlinux-x-linux-aws 5.1.0-r0: apt configuration for x-linux-aws packages
+- apt-openstlinux-x-linux-azure 5.1.0-r0: apt configuration for x-linux-azure packages
 - apt-openstlinux-x-linux-qt 5.1.0-r0: apt configuration for x-linux-qt packages
 - evcxr 0.15.1-r0: provide an evaluation context for Rust
 - evcxr-jupyter 0.15.1-r0: provide a Jupyter kernel for Rust
