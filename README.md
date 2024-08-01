@@ -88,6 +88,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-azure-servicebus 7.12.2-r0: Azure service bus client library
 - python3-azure-storage-blob 12.22.0-r0: Azure storage blobs client library
 - python3-ixnetwork-restpy 1.4.0-r0: IxNetwork REST API client
+- python3-jsonschema 4.1.7.3-r0: an implementation of JSON Schema validation for Python (version required by Jupyter notebooks)
 - python3-msal 1.30.0-r0: Microsoft authentication library
 - python3-msal-extensions 1.1.0-r0: Microsoft authentication library extensions
 - python3-msrest 0.7.1-r0: AutoRest swagger generator client runtime
