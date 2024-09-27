@@ -30,4 +30,5 @@ RDEPENDS:${PN} = " \
     python3-ixnetwork-restpy \
     samba \
     x-linux-ai-tool \
+    x-linux-isp-tool \
 "

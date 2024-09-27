@@ -81,6 +81,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - apt-openstlinux-x-linux-ai 5.1.0-r0: apt configuration for x-linux-ai packages
 - apt-openstlinux-x-linux-aws 5.1.0-r0: apt configuration for x-linux-aws packages
 - apt-openstlinux-x-linux-azure 5.1.0-r0: apt configuration for x-linux-azure packages
+- apt-openstlinux-x-linux-isp 5.1.0-r0: apt configuration for x-linux-isp packages
 - apt-openstlinux-x-linux-qt 5.1.0-r0: apt configuration for x-linux-qt packages
 - evcxr 0.15.1-r0: provide an evaluation context for Rust
 - evcxr-jupyter 0.15.1-r0: provide a Jupyter kernel for Rust
@@ -107,6 +108,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-jupyterthemes 0.20.0-r0: themes for Jupyter notebooks
 - python3-lesscpy 0.15.1-r0: provide Python LESS compiler
 - x-linux-ai-tool 5.1.0-r0: provide X-Linux-AI installer tool
+- x-linux-isp-tool 5.1.0-r0: provide X-Linux-ISP installer tool
 
 
 ## Maintainers
