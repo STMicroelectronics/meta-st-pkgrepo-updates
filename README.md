@@ -78,6 +78,8 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - samba 4.19.8-r1: fix missing directories /var/log/samba and /run/samba at package installation
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
+- apt-openstlinux-x-linux-aws 6.0.0-r0: apt configuration for x-linux-aws packages
+- apt-openstlinux-x-linux-azure 6.0.0-r0: apt configuration for x-linux-azure packages
 - evcxr 0.17.0-r0: provide an evaluation context for Rust
 - evcxr-jupyter 0.17.0-r0: provide a Jupyter kernel for Rust
 - libpqxx 7.10.0-r0: provide C++ PostgreSQL connector
