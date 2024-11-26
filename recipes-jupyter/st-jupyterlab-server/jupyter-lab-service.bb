@@ -24,6 +24,7 @@ RDEPENDS:${PN} += " \
     python3-jupyter-c-kernel \
     python3-jupyterthemes \
     python3-rpds-py \
+    python3-maturin \
     graphviz \
 "
 
