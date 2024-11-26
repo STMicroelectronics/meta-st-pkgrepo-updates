@@ -96,6 +96,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-jupyter-c-kernel 1.2.2-r0: minimal C kernel for Jupyter
 - python3-jupyterthemes 0.20.0-r0: themes for Jupyter notebooks
 - python3-lesscpy 0.15.1-r0: provide Python LESS compiler
+- python3-maturin 7.1.0-r0: Build and publish crates with pyo3, rust-cpython, cffi bindings and rust binaries as python packages
 
 > **Note:** Jupyter notebooks are only provided for STM32MP2 products excluding aarch32 architecture and Rust support is only available with aarch64 architecture.
 
