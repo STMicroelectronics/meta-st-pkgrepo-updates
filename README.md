@@ -78,6 +78,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - samba 4.19.6-r1: fix missing directories /var/log/samba and /run/samba at package installation
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
+- apt-openstlinux-x-linux-ai 6.0.0-r0: apt configuration for x-linux-ai packages
 - apt-openstlinux-x-linux-aws 6.0.0-r0: apt configuration for x-linux-aws packages
 - apt-openstlinux-x-linux-azure 6.0.0-r0: apt configuration for x-linux-azure packages
 - evcxr 0.15.1-r0: provide an evaluation context for Rust
@@ -104,6 +105,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-jupyter-c-kernel 1.2.2-r0: minimal C kernel for Jupyter
 - python3-jupyterthemes 0.20.0-r0: themes for Jupyter notebooks
 - python3-lesscpy 0.15.1-r0: provide Python LESS compiler
+- x-linux-ai-tool 6.0.0-r0: provide X-Linux-AI installer tool
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>

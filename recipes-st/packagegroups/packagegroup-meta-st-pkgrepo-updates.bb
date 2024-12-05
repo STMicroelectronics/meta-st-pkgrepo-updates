@@ -27,4 +27,5 @@ RDEPENDS:${PN} = " \
     python3-amqp \
     python3-ixnetwork-restpy \
     samba \
+    x-linux-ai-tool \
 "
