@@ -107,7 +107,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-jupyter-c-kernel 1.2.2-r0: minimal C kernel for Jupyter
 - python3-jupyterthemes 0.20.0-r0: themes for Jupyter notebooks
 - python3-lesscpy 0.15.1-r0: provide Python LESS compiler
-- x-linux-ai-tool 5.1.0-r0: provide X-Linux-AI installer tool
+- x-linux-ai-tool 5.1.0-r1: provide X-Linux-AI installer tool
 - x-linux-isp-tool 5.0.0-r0: provide X-Linux-ISP installer tool
 
 
