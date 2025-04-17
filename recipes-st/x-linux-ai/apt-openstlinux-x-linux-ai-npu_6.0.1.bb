@@ -1,16 +1,16 @@
 # Copyright (C) 2024, STMicroelectronics - All Rights Reserved
 
-SUMMARY = "X-Linux-AI apt configuration"
+SUMMARY = "X-LINUX-AI for NPU apt configuration"
 DESCRIPTION = "This package updates the apt configuration to access \
-X-Linux-AI packages. \
+X-LINUX-AI for NPU packages. \
 It also adds a disclaimer licenses file refering to the wiki page."
 
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 SRC_URI = " \
-    file://apt-openstlinux-x-linux-ai/10-st-disclaimer-extra-ai \
-    file://apt-openstlinux-x-linux-ai/extra.ai.packages.openstlinux.st.com.list \
+    file://apt-openstlinux-x-linux-ai/10-st-disclaimer-extra-ai-npu \
+    file://apt-openstlinux-x-linux-ai/extra.ainpu.packages.openstlinux.st.com.list \
 "
 
 # The package is target-independant
@@ -34,6 +34,8 @@ do_compile[noexec] = "1"
 do_install() {
     install -d ${D}/${sysconfdir}/apt/sources.list.d
     install -d ${D}/${sysconfdir}/apt/apt.conf.d
-    install ${S}/apt-openstlinux-x-linux-ai/extra.ai.packages.openstlinux.st.com.list   ${D}${sysconfdir}/apt/sources.list.d
-    install ${S}/apt-openstlinux-x-linux-ai/10-st-disclaimer-extra-ai                   ${D}${sysconfdir}/apt/apt.conf.d
+    install ${S}/apt-openstlinux-x-linux-ai/extra.ainpu.packages.openstlinux.st.com.list    ${D}${sysconfdir}/apt/sources.list.d
+    install ${S}/apt-openstlinux-x-linux-ai/10-st-disclaimer-extra-ai-npu                   ${D}${sysconfdir}/apt/apt.conf.d
 }
+
+RCONFLICTS:${PN} = "apt-openstlinux-x-linux-ai-cpu"
