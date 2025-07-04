@@ -9,6 +9,8 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ad
 inherit packagegroup
 
 RDEPENDS:${PN} = " \
+    apt-openstlinux-x-linux-ai-cpu \
+    apt-openstlinux-x-linux-ai-npu \
     apt-openstlinux-x-linux-aws \
     apt-openstlinux-x-linux-azure \
     hplip \
@@ -26,6 +28,7 @@ RDEPENDS:${PN} = " \
     python3-amqp \
     python3-ixnetwork-restpy \
     samba \
+    x-linux-ai-tool \
 "
 
 # Check if the machine is not based on aarch32 architecture for stm32mp2 machines
