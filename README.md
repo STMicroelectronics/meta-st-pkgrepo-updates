@@ -107,9 +107,11 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-lesscpy 0.15.1-r0: provide Python LESS compiler
 - python3-maturin 7.1.0-r0: Build and publish crates with pyo3, rust-cpython, cffi bindings and rust binaries as python packages
 - x-linux-ai-tool 6.1.0-r0: provide X-LINUX-AI installer tool
+- x-linux-isp-tool 6.1.0-r0: provide X-LINUX-ISP installer tool
 
 > **Note:** Jupyter notebooks are only provided for STM32MP2 products excluding aarch32 architecture and Rust support is only available with aarch64 architecture.
 
+> **Note:** X-LINUX-ISP installer tool is only available for STM32MP2 products.
 
 ## Maintainers
 - Jean-Marc Bouche <jean-marc.bouche@st.com>
