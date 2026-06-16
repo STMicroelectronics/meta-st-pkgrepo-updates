@@ -1,0 +1,52 @@
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Jean-Marc BOUCHE <jean-marc.bouche@foss.st.com>
+
+Index: hplip-3.25.8/base/device.py
+===================================================================
+--- hplip-3.25.8.orig/base/device.py
++++ hplip-3.25.8/base/device.py
+@@ -2687,7 +2687,7 @@ Content-length: %d\r
+ 
+ 
+ # URLs: hp:/usb/HP_LaserJet_3050?serial=00XXXXXXXXXX&loc=/hp/device/info_device_status.xml
+-class LocalOpener(urllib_request.URLopener):
++class LocalOpener(urllib_request.OpenerDirector):
+     def open_hp(self, url, dev):
+         log.debug("open_hp(%s)" % url)
+ 
+@@ -2717,7 +2717,7 @@ class LocalOpener(urllib_request.URLopen
+             return response#.fp
+ 
+ # URLs: hp:/usb/HP_OfficeJet_7500?serial=00XXXXXXXXXX&loc=/hp/device/info_device_status.xml
+-class LocalOpenerEWS_LEDM(urllib_request.URLopener):
++class LocalOpenerEWS_LEDM(urllib_request.OpenerDirector):
+     def open_hp(self, url, dev, foot=""):
+         log.debug("open_hp(%s)" % url)
+ 
+@@ -2743,7 +2743,7 @@ class LocalOpenerEWS_LEDM(urllib_request
+ 
+ 
+ # URLs: hp:/usb/HP_OfficeJet_7500?serial=00XXXXXXXXXX&loc=/hp/device/info_device_status.xml
+-class LocalOpener_LEDM(urllib_request.URLopener):
++class LocalOpener_LEDM(urllib_request.OpenerDirector):
+     def open_hp(self, url, dev, foot=""):
+         log.debug("open_hp(%s)" % url)
+ 
+@@ -2770,7 +2770,7 @@ class LocalOpener_LEDM(urllib_request.UR
+ 
+ 
+ # URLs: hp:/usb/HP_OfficeJet_7500?serial=00XXXXXXXXXX&loc=/hp/device/info_device_status.xml
+-class LocalOpener_CDM(urllib_request.URLopener):
++class LocalOpener_CDM(urllib_request.OpenerDirector):
+     def open_hp(self, url, dev, foot=""):
+         log.debug("open_hp(%s)" % url)
+         match_obj = http_pat_url.search(url)
+@@ -2782,6 +2782,6 @@ class LocalOpener_CDM(urllib_request.URL
+         reply.seek(0)
+         response = http_client.HTTPResponse(reply)
+         response.begin()
+-        respcode = response.getcode()
++        respcode = response.status()
+         data = response.read()
+         return data

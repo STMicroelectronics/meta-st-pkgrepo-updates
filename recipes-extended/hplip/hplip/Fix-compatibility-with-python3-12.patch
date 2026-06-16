@@ -1,0 +1,20 @@
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Jean-Marc BOUCHE <jean-marc.bouche@foss.st.com>
+
+Index: hplip-3.25.8/ui4/devmgr5.py
+===================================================================
+--- hplip-3.25.8.orig/ui4/devmgr5.py
++++ hplip-3.25.8/ui4/devmgr5.py
+@@ -1023,9 +1023,8 @@ class DevMgr5(QMainWindow,  Ui_MainWindo
+                     return
+ 
+                 hplip_conf = configparser.ConfigParser()
+-                fp = open("/etc/hp/hplip.conf", "r")
+-                hplip_conf.readfp(fp)
+-                fp.close()
++                with open("/etc/hp/hplip.conf", "r") as fp:
++                    hplip_conf.read_file(fp)
+ 
+                 try:
+                     plugin_installed = utils.to_bool(hplip_conf.get("hplip", "plugin"))
