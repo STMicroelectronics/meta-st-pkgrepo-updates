@@ -26,5 +26,10 @@ RDEPENDS:${PN} = " \
     samba \
 "
 
+# X-LINUX-ISP package not supported on STM32MP1 targets
+RDEPENDS:${PN}:append:stm32mp2common = " \
+    x-linux-isp-tool \
+"
+
 # Check if the machine is not based on aarch32 architecture for stm32mp2 machines
 RDEPENDS:${PN}:append:stm32mp2common = "${@bb.utils.contains('TUNE_FEATURES', 'aarch32', '', 'packagegroup-st-jupyter', d)}"

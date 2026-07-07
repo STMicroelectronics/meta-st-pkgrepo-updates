@@ -77,6 +77,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - samba 4.19.9-r1: fix missing directories /var/log/samba and /run/samba at package installation
 
 ## List of added packages in the layer meta-st-pkgrepo-updates
+- apt-openstlinux-x-linux-isp 6.2.1-r0: apt configuration for X-LINUX-ISP packages
 - evcxr 0.17.0-r0: provide an evaluation context for Rust
 - evcxr-jupyter 0.17.0-r0: provide a Jupyter kernel for Rust
 - libpqxx 7.10.4-r0: provide C++ PostgreSQL connector
@@ -101,6 +102,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-jupyterthemes 0.20.0-r0: themes for Jupyter notebooks
 - python3-lesscpy 0.15.1-r0: provide Python LESS compiler
 - python3-maturin 7.1.0-r0: Build and publish crates with pyo3, rust-cpython, cffi bindings and rust binaries as python packages
+- x-linux-isp-tool 6.2.0-r0: provide X-LINUX-ISP installer tool
 
 > **Note:** Jupyter notebooks are only provided for STM32MP2 products excluding aarch32 architecture and Rust support is only available with aarch64 architecture.
 
