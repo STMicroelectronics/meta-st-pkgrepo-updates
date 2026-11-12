@@ -99,7 +99,7 @@ where <branch> corresponds to the STM32MP1 Distribution Package version.
 - python3-jupyterthemes 0.20.0-r0: themes for Jupyter notebooks
 - python3-lesscpy 0.15.2-r0: provide Python LESS compiler
 
-> **Note:** Jupyter notebooks are only provided for STM32MP2 products excluding aarch32 architecture and Rust support is only available with aarch64 architecture.
+> **Note:** Jupyter notebooks are only provided for STM32MP2 products.
 
 
 ## Maintainers
